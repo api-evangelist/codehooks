@@ -1,0 +1,245 @@
+asyncapi: 2.6.0
+info:
+  title: Codehooks Events API
+  version: 1.0.0
+  description: >-
+    Asynchronous event API for Codehooks serverless backend hooks and queue
+    workers. Covers CRUD lifecycle hooks triggered on collection document
+    operations and asynchronous queue worker processing for named topics.
+  contact:
+    name: Codehooks
+    url: https://codehooks.io/
+  license:
+    name: Proprietary
+    url: https://codehooks.io/terms
+
+servers:
+  production:
+    url: https://{projectId}.api.codehooks.io/{space}
+    protocol: https
+    description: Codehooks serverless event endpoint
+    variables:
+      projectId:
+        default: myproject-ff00
+        description: The project ID assigned to your Codehooks project
+      space:
+        default: dev
+        description: The datastore space name (e.g. dev, staging, prod)
+
+channels:
+  collection/beforeCreate:
+    description: >-
+      Triggered before a new document is created in a collection. Allows
+      validation or transformation of the incoming document data.
+    subscribe:
+      operationId: onBeforeCreate
+      summary: Before document creation hook
+      message:
+        $ref: '#/components/messages/DocumentEvent'
+
+  collection/afterCreate:
+    description: >-
+      Triggered after a new document has been successfully created in a
+      collection.
+    subscribe:
+      operationId: onAfterCreate
+      summary: After document creation hook
+      message:
+        $ref: '#/components/messages/DocumentEvent'
+
+  collection/beforeRead:
+    description: >-
+      Triggered before a document is read from a collection. Allows
+      modification of query parameters or access control enforcement.
+    subscribe:
+      operationId: onBeforeRead
+      summary: Before document read hook
+      message:
+        $ref: '#/components/messages/ReadEvent'
+
+  collection/afterRead:
+    description: >-
+      Triggered after a document has been read from a collection. Allows
+      transformation or filtering of the returned data.
+    subscribe:
+      operationId: onAfterRead
+      summary: After document read hook
+      message:
+        $ref: '#/components/messages/DocumentEvent'
+
+  collection/beforeUpdate:
+    description: >-
+      Triggered before a document is updated in a collection. Allows
+      validation or transformation of the update data.
+    subscribe:
+      operationId: onBeforeUpdate
+      summary: Before document update hook
+      message:
+        $ref: '#/components/messages/DocumentUpdateEvent'
+
+  collection/afterUpdate:
+    description: >-
+      Triggered after a document has been successfully updated in a collection.
+    subscribe:
+      operationId: onAfterUpdate
+      summary: After document update hook
+      message:
+        $ref: '#/components/messages/DocumentEvent'
+
+  collection/beforeDelete:
+    description: >-
+      Triggered before a document is deleted from a collection. Allows
+      validation or prevention of the deletion.
+    subscribe:
+      operationId: onBeforeDelete
+      summary: Before document deletion hook
+      message:
+        $ref: '#/components/messages/DeleteEvent'
+
+  collection/afterDelete:
+    description: >-
+      Triggered after a document has been successfully deleted from a
+      collection.
+    subscribe:
+      operationId: onAfterDelete
+      summary: After document deletion hook
+      message:
+        $ref: '#/components/messages/DeleteEvent'
+
+  queue/{topic}:
+    description: >-
+      Queue worker channel for processing asynchronous jobs. Worker functions
+      registered for a topic receive jobs enqueued via the REST API or
+      internal triggers.
+    parameters:
+      topic:
+        description: The named queue topic
+        schema:
+          type: string
+    subscribe:
+      operationId: onQueueJob
+      summary: Queue worker job processing
+      message:
+        $ref: '#/components/messages/QueueJobEvent'
+
+components:
+  messages:
+    DocumentEvent:
+      name: DocumentEvent
+      title: Document Event
+      summary: >-
+        Event payload containing a document from a Codehooks collection
+        during CRUD lifecycle hooks.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/DocumentEventPayload'
+
+    ReadEvent:
+      name: ReadEvent
+      title: Read Event
+      summary: >-
+        Event payload containing query parameters for a read operation
+        on a Codehooks collection.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReadEventPayload'
+
+    DocumentUpdateEvent:
+      name: DocumentUpdateEvent
+      title: Document Update Event
+      summary: >-
+        Event payload containing the update data and target document
+        identifier during update hooks.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/DocumentUpdateEventPayload'
+
+    DeleteEvent:
+      name: DeleteEvent
+      title: Delete Event
+      summary: >-
+        Event payload containing the document identifier targeted for
+        deletion during delete hooks.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/DeleteEventPayload'
+
+    QueueJobEvent:
+      name: QueueJobEvent
+      title: Queue Job Event
+      summary: >-
+        Event payload for a queued job delivered to a worker function
+        for asynchronous processing.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/QueueJobEventPayload'
+
+  schemas:
+    DocumentEventPayload:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: The name of the collection the event pertains to.
+        document:
+          type: object
+          additionalProperties: true
+          description: The document data involved in the event.
+        _id:
+          type: string
+          description: The unique identifier of the document.
+
+    ReadEventPayload:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: The name of the collection being read.
+        query:
+          type: object
+          additionalProperties: true
+          description: The query parameters used for the read operation.
+        hints:
+          type: object
+          additionalProperties: true
+          description: Query hints including sort, limit, skip, and projection.
+
+    DocumentUpdateEventPayload:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: The name of the collection being updated.
+        _id:
+          type: string
+          description: The unique identifier of the document being updated.
+        updateData:
+          type: object
+          additionalProperties: true
+          description: >-
+            The update data, which may include direct field values or
+            MongoDB-like operators such as $set, $inc, $unset, $push, $pull.
+
+    DeleteEventPayload:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: The name of the collection the document is being deleted from.
+        _id:
+          type: string
+          description: The unique identifier of the document being deleted.
+
+    QueueJobEventPayload:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier of the queued job.
+        topic:
+          type: string
+          description: The queue topic name.
+        payload:
+          type: object
+          additionalProperties: true
+          description: The job payload data to be processed by the worker.

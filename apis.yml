@@ -17,6 +17,38 @@ apis:
       Eliminate setup hassles and enjoy rapid online or local development with
       our NoSQL database API and REST API, easy Data Management and powerful
       Serverless Backend features.
+  - aid: codehooks:events
+    name: Codehooks Events
+    tags:
+      - Events
+      - Hooks
+      - Queues
+    humanURL: https://codehooks.io/docs/hooks-and-workers
+    properties:
+      - url: https://codehooks.io/docs/hooks-and-workers
+        type: Documentation
+      - url: >-
+          https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/asyncapi/codehooks-events-asyncapi.yml
+        type: AsyncAPI
+    description: >-
+      The Codehooks Events API provides asynchronous CRUD lifecycle hooks and
+      queue worker processing for serverless backend operations. Hooks fire
+      before and after create, read, update, and delete operations on
+      collection documents, while queue workers process jobs enqueued to
+      named topics.
+properties:
+  - url: >-
+      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-document-schema.json
+    type: JSONSchema
+  - url: >-
+      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-key-value-schema.json
+    type: JSONSchema
+  - url: >-
+      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-queue-job-schema.json
+    type: JSONSchema
+  - url: >-
+      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-ld/codehooks-context.jsonld
+    type: JSON-LD
 name: Codehooks
 tags:
   - Code

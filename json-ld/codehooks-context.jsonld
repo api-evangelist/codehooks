@@ -1,0 +1,56 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "codehooks": "https://codehooks.io/ns/",
+    "Document": "codehooks:Document",
+    "KeyValueEntry": "codehooks:KeyValueEntry",
+    "QueueJob": "codehooks:QueueJob",
+    "collection": {
+      "@id": "codehooks:collection",
+      "@type": "@id"
+    },
+    "_id": {
+      "@id": "codehooks:identifier",
+      "@type": "xsd:string"
+    },
+    "key": {
+      "@id": "codehooks:key",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "codehooks:value"
+    },
+    "ttl": {
+      "@id": "codehooks:timeToLive",
+      "@type": "xsd:integer"
+    },
+    "topic": {
+      "@id": "codehooks:topic",
+      "@type": "xsd:string"
+    },
+    "payload": {
+      "@id": "codehooks:payload"
+    },
+    "status": {
+      "@id": "codehooks:status",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "codehooks:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "completedAt": {
+      "@id": "codehooks:completedAt",
+      "@type": "xsd:dateTime"
+    },
+    "_createdOn": {
+      "@id": "codehooks:createdOn",
+      "@type": "xsd:dateTime"
+    },
+    "_updatedOn": {
+      "@id": "codehooks:updatedOn",
+      "@type": "xsd:dateTime"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-key-value-schema.json",
+  "title": "Codehooks Key-Value Entry",
+  "description": "A key-value entry in the Codehooks key-value store, supporting string or object values with optional TTL-based expiration.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The unique key identifier for the stored value."
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
+      ],
+      "description": "The stored value, which can be a string, number, or JSON object."
+    },
+    "ttl": {
+      "type": "integer",
+      "description": "Time-to-live in milliseconds for automatic expiration of the key-value pair.",
+      "minimum": 0
+    }
+  },
+  "required": ["key", "value"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "key": "session:abc123",
+      "value": "authenticated",
+      "ttl": 3600000
+    },
+    {
+      "key": "config:feature-flags",
+      "value": {
+        "darkMode": true,
+        "betaAccess": false
+      }
+    },
+    {
+      "key": "counter:page-views",
+      "value": 42
+    }
+  ]
+}

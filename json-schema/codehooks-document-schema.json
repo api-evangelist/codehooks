@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-document-schema.json",
+  "title": "Codehooks Document",
+  "description": "A document in a Codehooks NoSQL collection. Documents are schema-flexible JSON objects with a system-assigned _id.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique document identifier assigned by the system."
+    },
+    "_createdOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the document was created."
+    },
+    "_updatedOn": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the document was last updated."
+    }
+  },
+  "additionalProperties": true,
+  "required": ["_id"],
+  "examples": [
+    {
+      "_id": "64a1b2c3d4e5f60012345678",
+      "name": "Example document",
+      "status": "active",
+      "_createdOn": "2025-06-01T12:00:00.000Z",
+      "_updatedOn": "2025-06-01T12:00:00.000Z"
+    }
+  ]
+}
