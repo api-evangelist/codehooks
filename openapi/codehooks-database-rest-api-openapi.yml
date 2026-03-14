@@ -1,0 +1,622 @@
+openapi: 3.1.0
+info:
+  title: Codehooks Database REST API
+  description: >-
+    The Codehooks.io Database REST API provides a complete and secure REST API
+    for basic database CRUD (Create, Read, Update, Delete) operations on NoSQL
+    collections. The API supports querying with MongoDB-like syntax, pagination,
+    sorting, and field selection. It also includes a key-value store for caching
+    and fast lookups, and a queue system for asynchronous job processing. All
+    endpoints are prefixed with the project ID and datastore space name.
+  version: 1.0.0
+  contact:
+    name: Codehooks
+    url: https://codehooks.io/
+  license:
+    name: Proprietary
+    url: https://codehooks.io/terms
+servers:
+  - url: https://{projectId}.api.codehooks.io/{space}
+    description: Codehooks API endpoint
+    variables:
+      projectId:
+        default: myproject-ff00
+        description: The project ID assigned to your Codehooks project
+      space:
+        default: dev
+        description: The datastore space name (e.g. dev, staging, prod)
+security:
+  - apiKey: []
+paths:
+  /{collection}:
+    get:
+      operationId: listDocuments
+      summary: List documents in a collection
+      description: >-
+        Retrieve documents from a collection with optional query parameters for
+        filtering, sorting, pagination, and field selection. Supports both
+        simple key-value query parameters and advanced NoSQL JSON query syntax
+        via the q parameter.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection to query
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: >-
+            Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like
+            operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists,
+            $regex, $or, and $and.
+          schema:
+            type: string
+        - name: h
+          in: query
+          description: >-
+            Query hints as a JSON object (URL-encoded). Supports fields, sort,
+            skip, limit, and projection.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of documents to return
+          schema:
+            type: integer
+            default: 100
+        - name: offset
+          in: query
+          description: Number of documents to skip in the result set
+          schema:
+            type: integer
+            default: 0
+        - name: sort
+          in: query
+          description: >-
+            Comma-separated list of fields to sort by. Prefix with - for
+            descending order.
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include in the response
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of documents matching the query
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+    post:
+      operationId: createDocument
+      summary: Create a new document
+      description: >-
+        Create a new document in the specified collection. The document will be
+        assigned a unique _id if one is not provided.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection to add the document to
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentInput'
+      responses:
+        '201':
+          description: Document created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Invalid document data
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /{collection}/{id}:
+    get:
+      operationId: getDocument
+      summary: Get a document by ID
+      description: Retrieve a single document from a collection by its unique identifier.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the document
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The requested document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Document not found
+    put:
+      operationId: replaceDocument
+      summary: Replace a document
+      description: >-
+        Replace an entire document in the collection by its unique identifier.
+        The entire document is replaced with the provided data.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the document
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentInput'
+      responses:
+        '200':
+          description: Document replaced successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Invalid document data
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Document not found
+    patch:
+      operationId: updateDocument
+      summary: Update a document
+      description: >-
+        Partially update a document in the collection by its unique identifier.
+        Only the provided fields are updated. Supports MongoDB-like update
+        operators such as $set, $inc, $unset, $push, and $pull.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the document
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentUpdate'
+      responses:
+        '200':
+          description: Document updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '400':
+          description: Invalid update data
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Document not found
+    delete:
+      operationId: deleteDocument
+      summary: Delete a document
+      description: Delete a single document from a collection by its unique identifier.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the document
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Document not found
+  /{collection}/_byquery:
+    patch:
+      operationId: updateDocumentsByQuery
+      summary: Update multiple documents by query
+      description: >-
+        Update multiple documents in a collection that match the provided query
+        parameters. Supports MongoDB-like update operators such as $set, $inc,
+        $unset, $push, and $pull.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: >-
+            NoSQL JSON query object (URL-encoded) to select documents to update.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentUpdate'
+      responses:
+        '200':
+          description: Documents updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Number of documents updated
+        '400':
+          description: Invalid update data or query
+        '401':
+          description: Unauthorized - invalid or missing API key
+    delete:
+      operationId: deleteDocumentsByQuery
+      summary: Delete multiple documents by query
+      description: >-
+        Delete multiple documents in a collection that match the provided query
+        parameters.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: >-
+            NoSQL JSON query object (URL-encoded) to select documents to delete.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documents deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Number of documents deleted
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /{collection}/_count:
+    get:
+      operationId: countDocuments
+      summary: Count documents in a collection
+      description: >-
+        Return the count of documents in a collection, optionally filtered by a
+        query.
+      tags:
+        - Documents
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The name of the collection
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: Optional NoSQL JSON query object to filter the count
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The count of matching documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /keyv/{key}:
+    get:
+      operationId: getKeyValue
+      summary: Get a value by key
+      description: >-
+        Retrieve a string or object value from the key-value store by its key.
+      tags:
+        - Key-Value Store
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The key to retrieve the value for
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The value associated with the key
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: string
+                  - type: object
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Key not found
+    put:
+      operationId: setKeyValue
+      summary: Set a key-value pair
+      description: >-
+        Store a string or object value in the key-value store with an optional
+        TTL (time-to-live) for automatic expiration.
+      tags:
+        - Key-Value Store
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The key to store the value under
+          schema:
+            type: string
+        - name: ttl
+          in: query
+          description: Time-to-live in milliseconds for automatic expiration
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: string
+                - type: object
+      responses:
+        '200':
+          description: Key-value pair stored successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+    delete:
+      operationId: deleteKeyValue
+      summary: Delete a key-value pair
+      description: Remove a key-value pair from the key-value store.
+      tags:
+        - Key-Value Store
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The key to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Key-value pair deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Key not found
+  /keyv/{key}/_incr:
+    put:
+      operationId: incrementKeyValue
+      summary: Increment a numeric value
+      description: >-
+        Increment a numeric value in the key-value store by the specified
+        amount.
+      tags:
+        - Key-Value Store
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The key of the numeric value to increment
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: number
+                  description: The amount to increment by
+      responses:
+        '200':
+          description: Value incremented successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: number
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /keyv/{key}/_decr:
+    put:
+      operationId: decrementKeyValue
+      summary: Decrement a numeric value
+      description: >-
+        Decrement a numeric value in the key-value store by the specified
+        amount.
+      tags:
+        - Key-Value Store
+      parameters:
+        - name: key
+          in: path
+          required: true
+          description: The key of the numeric value to decrement
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: number
+                  description: The amount to decrement by
+      responses:
+        '200':
+          description: Value decremented successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: number
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /queue/{topic}:
+    post:
+      operationId: enqueueJob
+      summary: Enqueue a job
+      description: >-
+        Add a job to a named queue topic. Jobs are processed asynchronously by
+        worker functions registered for the topic.
+      tags:
+        - Queue
+      parameters:
+        - name: topic
+          in: path
+          required: true
+          description: The queue topic name to add the job to
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: The job payload to be processed by the worker
+      responses:
+        '201':
+          description: Job enqueued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    description: The unique identifier of the enqueued job
+                  topic:
+                    type: string
+                    description: The queue topic name
+        '401':
+          description: Unauthorized - invalid or missing API key
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: x-apikey
+      in: header
+      description: >-
+        API key for authentication. Obtain from the Codehooks.io dashboard or
+        CLI.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authentication
+  schemas:
+    Document:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique document identifier
+      additionalProperties: true
+      description: >-
+        A document in a Codehooks collection. Documents are schema-flexible
+        JSON objects with a system-assigned _id.
+    DocumentInput:
+      type: object
+      additionalProperties: true
+      description: >-
+        Input data for creating or replacing a document. Any valid JSON object
+        is accepted.
+    DocumentUpdate:
+      type: object
+      additionalProperties: true
+      description: >-
+        Partial update data for a document. Supports direct field updates or
+        MongoDB-like update operators such as $set, $inc, $unset, $push, and
+        $pull.
+tags:
+  - name: Documents
+    description: CRUD operations on NoSQL collection documents
+  - name: Key-Value Store
+    description: Fast key-value storage with optional TTL for caching and lookups
+  - name: Queue
+    description: Asynchronous job queue for worker processing

@@ -10,10 +10,13 @@ apis:
     properties:
       - url: ' https://codehooks.io/'
         type: Documentation
+      - url: >-
+          https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/openapi/codehooks-database-rest-api-openapi.yml
+        type: OpenAPI
     description: >-
       Eliminate setup hassles and enjoy rapid online or local development with
       our NoSQL database API and REST API, easy Data Management and powerful
-      Serverless Backend features. 
+      Serverless Backend features.
 name: Codehooks
 tags:
   - Code
@@ -25,7 +28,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-02-08'
-modified: '2025-02-27'
+modified: '2026-03-14'
 position: Consumer
 description: >-
   Codehooks is a software development tool that allows developers to easily
