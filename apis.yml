@@ -1,14 +1,33 @@
 aid: codehooks
 url: >-
   https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/apis.yml
+name: Codehooks
+tags:
+  - Code
+  - Snippets
+  - Hooks
+  - Events
+  - Workflows
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2025-02-08'
+modified: '2026-03-16'
+position: Consumer
+description: >-
+  Codehooks is a software development tool that allows developers to easily
+  create and manage custom code snippets that can be triggered automatically
+  during specific events in their workflow. These snippets, known as code
+  hooks, can perform a wide range of actions, such as updating a database,
+  sending notifications, or running automated tests.
 apis:
   - aid: codehooks:codehooks
-    name: Codehooks
+    name: Codehooks API
     tags:
       - API
-    humanURL: ' https://codehooks.io/'
+    humanURL: https://codehooks.io/
     properties:
-      - url: ' https://codehooks.io/'
+      - url: https://codehooks.io/docs/
         type: Documentation
       - url: >-
           https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/openapi/codehooks-database-rest-api-openapi.yml
@@ -32,77 +51,23 @@ apis:
         type: AsyncAPI
     description: >-
       The Codehooks Events API provides asynchronous CRUD lifecycle hooks and
-      queue worker processing for serverless backend operations. Hooks fire
-      before and after create, read, update, and delete operations on
-      collection documents, while queue workers process jobs enqueued to
-      named topics.
-properties:
-  - url: >-
-      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-document-schema.json
-    type: JSONSchema
-  - url: >-
-      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-key-value-schema.json
-    type: JSONSchema
-  - url: >-
-      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-schema/codehooks-queue-job-schema.json
-    type: JSONSchema
-  - url: >-
-      https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/json-ld/codehooks-context.jsonld
-    type: JSON-LD
-name: Codehooks
-tags:
-  - Code
-  - Snippets
-  - Hooks
-  - Events
-  - Workflows
-type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-access: 3rd-Party
-created: '2025-02-08'
-modified: '2026-03-14'
-position: Consumer
-description: >-
-  Codehooks is a software development tool that allows developers to easily
-  create and manage custom code snippets that can be triggered automatically
-  during specific events in their workflow. These snippets, known as "code
-  hooks," can perform a wide range of actions, such as updating a database,
-  sending notifications, or running automated tests. Codehooks streamlines the
-  development process by providing a centralized platform for storing and
-  executing these reusable code snippets, thereby saving developers time and
-  effort. With its user-friendly interface and robust functionality, Codehooks
-  empowers developers to enhance their productivity and efficiency when building
-  and deploying software applications.
+      queue worker processing for serverless backend operations.
+common:
+  - type: Website
+    url: https://codehooks.io/
+  - type: Documentation
+    url: https://codehooks.io/docs/
+  - type: Getting Started
+    url: https://codehooks.io/docs/quickstart-cli
+  - type: Blog
+    url: https://codehooks.io/blog
+  - type: Pricing
+    url: https://codehooks.io/#pricing
+  - type: Terms of Service
+    url: https://codehooks.io/terms
+  - type: Privacy Policy
+    url: https://codehooks.io/privacy
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: Blog - Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/blog
-    type: Blog
-  - name: Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/#pricing
-    type: Pricing
-  - name: About - Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/about
-    type: About
-  - name: Overview - Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/docs/
-    type: Documentation
-  - name: Getting started - Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/docs/quickstart-cli
-    type: GettingStarted
-  - name: Terms of Service - Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/terms
-    type: TermsOfService
-  - name: Privacy Policy - Launch your API and REST API Backend instantly
-    description: 'null'
-    url: https://codehooks.io/privacy
-    type: PrivacyPolicy
