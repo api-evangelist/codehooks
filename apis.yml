@@ -4,9 +4,9 @@ url: >-
 name: Codehooks
 tags:
   - Code
-  - Snippets
-  - Hooks
   - Events
+  - Hooks
+  - Snippets
   - Workflows
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -23,8 +23,7 @@ description: >-
 apis:
   - aid: codehooks:codehooks
     name: Codehooks API
-    tags:
-      - API
+    tags: []
     humanURL: https://codehooks.io/
     properties:
       - url: https://codehooks.io/docs/
