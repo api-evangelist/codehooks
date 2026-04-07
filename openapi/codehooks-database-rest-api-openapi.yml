@@ -31,7 +31,7 @@ paths:
   /{collection}:
     get:
       operationId: listDocuments
-      summary: List documents in a collection
+      summary: Codehooks List documents in a collection
       description: >-
         Retrieve documents from a collection with optional query parameters for
         filtering, sorting, pagination, and field selection. Supports both
@@ -100,7 +100,7 @@ paths:
           description: Collection not found
     post:
       operationId: createDocument
-      summary: Create a new document
+      summary: Codehooks Create a new document
       description: >-
         Create a new document in the specified collection. The document will be
         assigned a unique _id if one is not provided.
@@ -133,7 +133,7 @@ paths:
   /{collection}/{id}:
     get:
       operationId: getDocument
-      summary: Get a document by ID
+      summary: Codehooks Get a document by ID
       description: Retrieve a single document from a collection by its unique identifier.
       tags:
         - Documents
@@ -163,7 +163,7 @@ paths:
           description: Document not found
     put:
       operationId: replaceDocument
-      summary: Replace a document
+      summary: Codehooks Replace a document
       description: >-
         Replace an entire document in the collection by its unique identifier.
         The entire document is replaced with the provided data.
@@ -203,7 +203,7 @@ paths:
           description: Document not found
     patch:
       operationId: updateDocument
-      summary: Update a document
+      summary: Codehooks Update a document
       description: >-
         Partially update a document in the collection by its unique identifier.
         Only the provided fields are updated. Supports MongoDB-like update
@@ -244,7 +244,7 @@ paths:
           description: Document not found
     delete:
       operationId: deleteDocument
-      summary: Delete a document
+      summary: Codehooks Delete a document
       description: Delete a single document from a collection by its unique identifier.
       tags:
         - Documents
@@ -271,7 +271,7 @@ paths:
   /{collection}/_byquery:
     patch:
       operationId: updateDocumentsByQuery
-      summary: Update multiple documents by query
+      summary: Codehooks Update multiple documents by query
       description: >-
         Update multiple documents in a collection that match the provided query
         parameters. Supports MongoDB-like update operators such as $set, $inc,
@@ -314,7 +314,7 @@ paths:
           description: Unauthorized - invalid or missing API key
     delete:
       operationId: deleteDocumentsByQuery
-      summary: Delete multiple documents by query
+      summary: Codehooks Delete multiple documents by query
       description: >-
         Delete multiple documents in a collection that match the provided query
         parameters.
@@ -349,7 +349,7 @@ paths:
   /{collection}/_count:
     get:
       operationId: countDocuments
-      summary: Count documents in a collection
+      summary: Codehooks Count documents in a collection
       description: >-
         Return the count of documents in a collection, optionally filtered by a
         query.
@@ -382,7 +382,7 @@ paths:
   /keyv/{key}:
     get:
       operationId: getKeyValue
-      summary: Get a value by key
+      summary: Codehooks Get a value by key
       description: >-
         Retrieve a string or object value from the key-value store by its key.
       tags:
@@ -409,7 +409,7 @@ paths:
           description: Key not found
     put:
       operationId: setKeyValue
-      summary: Set a key-value pair
+      summary: Codehooks Set a key-value pair
       description: >-
         Store a string or object value in the key-value store with an optional
         TTL (time-to-live) for automatic expiration.
@@ -442,7 +442,7 @@ paths:
           description: Unauthorized - invalid or missing API key
     delete:
       operationId: deleteKeyValue
-      summary: Delete a key-value pair
+      summary: Codehooks Delete a key-value pair
       description: Remove a key-value pair from the key-value store.
       tags:
         - Key-Value Store
@@ -463,7 +463,7 @@ paths:
   /keyv/{key}/_incr:
     put:
       operationId: incrementKeyValue
-      summary: Increment a numeric value
+      summary: Codehooks Increment a numeric value
       description: >-
         Increment a numeric value in the key-value store by the specified
         amount.
@@ -501,7 +501,7 @@ paths:
   /keyv/{key}/_decr:
     put:
       operationId: decrementKeyValue
-      summary: Decrement a numeric value
+      summary: Codehooks Decrement a numeric value
       description: >-
         Decrement a numeric value in the key-value store by the specified
         amount.
@@ -539,7 +539,7 @@ paths:
   /queue/{topic}:
     post:
       operationId: enqueueJob
-      summary: Enqueue a job
+      summary: Codehooks Enqueue a job
       description: >-
         Add a job to a named queue topic. Jobs are processed asynchronously by
         worker functions registered for the topic.
