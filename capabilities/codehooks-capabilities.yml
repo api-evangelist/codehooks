@@ -1,0 +1,203 @@
+# Naftiko capabilities profile for Codehooks.
+# Capabilities cover the highest-leverage operations across the Codehooks
+# Database REST API (documents, key-value, queues) and the Events surface
+# (CRUD lifecycle hooks and queue workers).
+provider: codehooks
+name: Codehooks
+description: >-
+  JavaScript-native serverless backend with a NoSQL document database,
+  key-value store, persistent queues, CRON, and CRUD lifecycle hooks.
+capabilities:
+  - id: codehooks.documents.list
+    name: List documents
+    description: Query documents in a collection with MongoDB-style filters and pagination.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - q
+      - h
+      - offset
+      - limit
+    outputs:
+      - documents
+
+  - id: codehooks.documents.create
+    name: Create document
+    description: Insert a new document into a collection.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - body
+    outputs:
+      - _id
+      - _createdOn
+
+  - id: codehooks.documents.get
+    name: Get document
+    description: Retrieve a single document by id.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - id
+    outputs:
+      - document
+
+  - id: codehooks.documents.replace
+    name: Replace document
+    description: Replace a document by id (PUT semantics).
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - id
+      - body
+    outputs:
+      - document
+
+  - id: codehooks.documents.update
+    name: Update document
+    description: Patch a document by id with MongoDB-style update operators.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - id
+      - body
+    outputs:
+      - document
+
+  - id: codehooks.documents.delete
+    name: Delete document
+    description: Delete a document by id.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - id
+    outputs:
+      - status
+
+  - id: codehooks.documents.update-by-query
+    name: Update documents by query
+    description: Bulk update documents that match a MongoDB-style query.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - q
+      - body
+    outputs:
+      - matched
+      - modified
+
+  - id: codehooks.documents.delete-by-query
+    name: Delete documents by query
+    description: Bulk delete documents that match a MongoDB-style query.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - q
+    outputs:
+      - matched
+      - deleted
+
+  - id: codehooks.documents.count
+    name: Count documents
+    description: Return the number of documents matching a query.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - collection
+      - q
+    outputs:
+      - count
+
+  - id: codehooks.keyv.get
+    name: Get key-value entry
+    description: Read a value by key from the key-value store.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - key
+    outputs:
+      - value
+
+  - id: codehooks.keyv.set
+    name: Set key-value entry
+    description: Write a value with optional TTL to the key-value store.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - key
+      - value
+      - ttl
+    outputs:
+      - status
+
+  - id: codehooks.keyv.delete
+    name: Delete key-value entry
+    description: Remove a key from the key-value store.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - key
+    outputs:
+      - status
+
+  - id: codehooks.keyv.increment
+    name: Increment counter
+    description: Atomically increment a numeric value in the key-value store.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - key
+      - amount
+    outputs:
+      - value
+
+  - id: codehooks.keyv.decrement
+    name: Decrement counter
+    description: Atomically decrement a numeric value in the key-value store.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - key
+      - amount
+    outputs:
+      - value
+
+  - id: codehooks.queue.enqueue
+    name: Enqueue job
+    description: Submit a job onto a named queue topic for asynchronous processing.
+    api: codehooks:codehooks-database-rest-api
+    inputs:
+      - topic
+      - payload
+    outputs:
+      - jobId
+
+  - id: codehooks.events.on-before-create
+    name: Subscribe before-create hook
+    description: Run validation or transformation before a document is created.
+    api: codehooks:codehooks-events
+    inputs:
+      - collection
+    outputs:
+      - document
+
+  - id: codehooks.events.on-after-create
+    name: Subscribe after-create hook
+    description: React to newly created documents (audit, fan-out, indexing).
+    api: codehooks:codehooks-events
+    inputs:
+      - collection
+    outputs:
+      - document
+
+  - id: codehooks.events.on-after-update
+    name: Subscribe after-update hook
+    description: React to document updates with downstream side-effects.
+    api: codehooks:codehooks-events
+    inputs:
+      - collection
+    outputs:
+      - document
+
+  - id: codehooks.events.on-queue-job
+    name: Subscribe queue worker
+    description: Process queued jobs with persistent retry and state.
+    api: codehooks:codehooks-events
+    inputs:
+      - topic
+    outputs:
+      - result

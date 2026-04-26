@@ -1,0 +1,117 @@
+extends:
+  - spectral:oas
+
+# Spectral linting rules for Codehooks REST API specifications.
+# Tuned to {projectId}.api.codehooks.io conventions: HTTPS-only, API key
+# authentication, project-scoped servers with the {projectId}/{space}
+# template, MongoDB-style query parameters, and standard CRUD operationIds.
+rules:
+  codehooks-info-contact:
+    description: API contact information must be present.
+    severity: error
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  codehooks-server-https:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  codehooks-server-template:
+    description: Codehooks server URL must use the {projectId}.api.codehooks.io/{space} template.
+    severity: warn
+    given: "$.servers[?(@.url && @.url.indexOf('codehooks.io') > -1)].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\{projectId\\}\\.api\\.codehooks\\.io/\\{space\\}"
+
+  codehooks-apikey-security:
+    description: An API key security scheme must be defined.
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              enum: ["apiKey", "http"]
+
+  codehooks-operation-id:
+    description: Every operation must declare a unique operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  codehooks-operation-tags:
+    description: Operations must declare at least one tag.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  codehooks-collection-path:
+    description: Collection-level paths should be declared as /{collection} or sub-paths thereof.
+    severity: info
+    given: "$.paths"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^/(\\{collection\\}|keyv|queue)": {}
+
+  codehooks-error-responses:
+    description: Mutating operations should declare 4xx error responses.
+    severity: warn
+    given: "$.paths[*][post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["400"]
+            - required: ["401"]
+            - required: ["403"]
+            - required: ["404"]
+
+  codehooks-query-parameter:
+    description: List endpoints should accept the q query parameter for MongoDB-style filters.
+    severity: info
+    given: "$.paths['/{collection}'].get.parameters[*]"
+    then:
+      field: name
+      function: truthy
+
+  codehooks-pagination-hints:
+    description: List endpoints should accept the h hints query parameter (sort, fields, offset, limit).
+    severity: info
+    given: "$.paths['/{collection}'].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - collection
+          - q
+          - h
+          - offset
+          - limit
+          - sort
+          - fields
