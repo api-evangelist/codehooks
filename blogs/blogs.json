@@ -1,0 +1,13 @@
+{
+  "repo": "codehooks",
+  "feeds": [
+    {
+      "source": "https://codehooks.io/blog",
+      "feed_url": "https://codehooks.io/blog/rss.xml",
+      "saved": 10,
+      "title": "codehooks.io Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:25:22Z"
+}
