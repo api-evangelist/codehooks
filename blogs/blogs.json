@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://codehooks.io/blog",
-      "feed_url": "https://codehooks.io/blog/rss.xml",
-      "saved": 10,
-      "title": "codehooks.io Blog"
+      "feed_url": "https://codehooks.io/blog/atom.xml",
+      "title": "codehooks.io Blog",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:25:22Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
