@@ -17,7 +17,7 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
-x-type: company
+kind: company
 created: '2025-02-08'
 modified: '2026-04-26'
 position: Consumer
@@ -128,7 +128,7 @@ common:
   - type: PrivacyPolicy
     url: https://codehooks.io/privacy
   - url: json-ld/codehooks-context.jsonld
-    type: JSON-LD
+    type: JSONLD
   - url: json-schema/codehooks-document-schema.json
     type: JSONSchema
   - url: json-schema/codehooks-key-value-schema.json
