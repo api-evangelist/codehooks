@@ -1,0 +1,261 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Codehooks Database REST API — Key-Value Store
+  description: 'Codehooks Database REST API — Key-Value Store. 5 operations. Lead operation: Codehooks Get a value by key.
+    Self-contained Naftiko capability covering one Codehooks business surface.'
+  tags:
+  - Codehooks
+  - Key-Value Store
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CODEHOOKS_API_KEY: CODEHOOKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: database-rest-key-value-store
+    baseUri: https://{projectId}.api.codehooks.io/{space}
+    description: Codehooks Database REST API — Key-Value Store business capability. Self-contained, no shared references.
+    resources:
+    - name: keyv-key
+      path: /keyv/{key}
+      operations:
+      - name: getkeyvalue
+        method: GET
+        description: Codehooks Get a value by key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: The key to retrieve the value for
+          required: true
+      - name: setkeyvalue
+        method: PUT
+        description: Codehooks Set a key-value pair
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: The key to store the value under
+          required: true
+        - name: ttl
+          in: query
+          type: integer
+          description: Time-to-live in milliseconds for automatic expiration
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletekeyvalue
+        method: DELETE
+        description: Codehooks Delete a key-value pair
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: The key to delete
+          required: true
+    - name: keyv-key-_decr
+      path: /keyv/{key}/_decr
+      operations:
+      - name: decrementkeyvalue
+        method: PUT
+        description: Codehooks Decrement a numeric value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: The key of the numeric value to decrement
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: keyv-key-_incr
+      path: /keyv/{key}/_incr
+      operations:
+      - name: incrementkeyvalue
+        method: PUT
+        description: Codehooks Increment a numeric value
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: The key of the numeric value to increment
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CODEHOOKS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: database-rest-key-value-store-rest
+    port: 8080
+    description: REST adapter for Codehooks Database REST API — Key-Value Store. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/keyv/{key}
+      name: keyv-key
+      description: REST surface for keyv-key.
+      operations:
+      - method: GET
+        name: getkeyvalue
+        description: Codehooks Get a value by key
+        call: database-rest-key-value-store.getkeyvalue
+        with:
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setkeyvalue
+        description: Codehooks Set a key-value pair
+        call: database-rest-key-value-store.setkeyvalue
+        with:
+          key: rest.key
+          ttl: rest.ttl
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletekeyvalue
+        description: Codehooks Delete a key-value pair
+        call: database-rest-key-value-store.deletekeyvalue
+        with:
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/keyv/{key}/decr
+      name: keyv-key-decr
+      description: REST surface for keyv-key-_decr.
+      operations:
+      - method: PUT
+        name: decrementkeyvalue
+        description: Codehooks Decrement a numeric value
+        call: database-rest-key-value-store.decrementkeyvalue
+        with:
+          key: rest.key
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/keyv/{key}/incr
+      name: keyv-key-incr
+      description: REST surface for keyv-key-_incr.
+      operations:
+      - method: PUT
+        name: incrementkeyvalue
+        description: Codehooks Increment a numeric value
+        call: database-rest-key-value-store.incrementkeyvalue
+        with:
+          key: rest.key
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: database-rest-key-value-store-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Codehooks Database REST API — Key-Value Store. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: codehooks-get-value-key
+      description: Codehooks Get a value by key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: database-rest-key-value-store.getkeyvalue
+      with:
+        key: tools.key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: codehooks-set-key-value-pair
+      description: Codehooks Set a key-value pair
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: database-rest-key-value-store.setkeyvalue
+      with:
+        key: tools.key
+        ttl: tools.ttl
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: codehooks-delete-key-value-pair
+      description: Codehooks Delete a key-value pair
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: database-rest-key-value-store.deletekeyvalue
+      with:
+        key: tools.key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: codehooks-decrement-numeric-value
+      description: Codehooks Decrement a numeric value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: database-rest-key-value-store.decrementkeyvalue
+      with:
+        key: tools.key
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: codehooks-increment-numeric-value
+      description: Codehooks Increment a numeric value
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: database-rest-key-value-store.incrementkeyvalue
+      with:
+        key: tools.key
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
