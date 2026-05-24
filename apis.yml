@@ -132,6 +132,8 @@ common:
   type: Spectral
 - url: capabilities/codehooks-capabilities.yml
   type: NaftikoCapabilities
+- type: LLMsTxt
+  url: https://codehooks.io/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
