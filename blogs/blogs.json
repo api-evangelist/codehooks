@@ -2,12 +2,20 @@
   "repo": "codehooks",
   "feeds": [
     {
-      "source": "https://codehooks.io/blog",
+      "source": "https://codehooks.io/blog/atom.xml",
       "feed_url": "https://codehooks.io/blog/atom.xml",
-      "title": "codehooks.io Blog",
-      "saved": 9
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://codehooks.io/docs/quickstart-cli",
+      "feed_url": "https://codehooks.io/blog/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
   "post_count": 19,
-  "fetched": "2026-05-17T20:20:35Z"
+  "fetched": "2026-06-01T23:35:02Z"
 }
