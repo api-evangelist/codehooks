@@ -1,0 +1,443 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Codehooks Database REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-apikey",
+      "value": "{{x-apikey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Codehooks List documents in a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection to query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists, $regex, $or, and $and."
+              },
+              {
+                "name": "h",
+                "value": "",
+                "type": "query",
+                "description": "Query hints as a JSON object (URL-encoded). Supports fields, sort, skip, limit, and projection."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of documents to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of documents to skip in the result set"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort by. Prefix with - for descending order."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve documents from a collection with optional query parameters for filtering, sorting, pagination, and field selection. Supports both simple key-value query parameters and advanced NoSQL JSON query syntax via the q parameter."
+        },
+        {
+          "info": {
+            "name": "Codehooks Create a new document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection to add the document to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new document in the specified collection. The document will be assigned a unique _id if one is not provided."
+        },
+        {
+          "info": {
+            "name": "Codehooks Get a document by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/:id",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Retrieve a single document from a collection by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Codehooks Replace a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/:id",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire document in the collection by its unique identifier. The entire document is replaced with the provided data."
+        },
+        {
+          "info": {
+            "name": "Codehooks Update a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/:id",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a document in the collection by its unique identifier. Only the provided fields are updated. Supports MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull."
+        },
+        {
+          "info": {
+            "name": "Codehooks Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/:id",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ]
+          },
+          "docs": "Delete a single document from a collection by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Codehooks Update multiple documents by query",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/_byquery",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "NoSQL JSON query object (URL-encoded) to select documents to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update multiple documents in a collection that match the provided query parameters. Supports MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull."
+        },
+        {
+          "info": {
+            "name": "Codehooks Delete multiple documents by query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/_byquery",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "NoSQL JSON query object (URL-encoded) to select documents to delete."
+              }
+            ]
+          },
+          "docs": "Delete multiple documents in a collection that match the provided query parameters."
+        },
+        {
+          "info": {
+            "name": "Codehooks Count documents in a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{projectId}.api.codehooks.io/{space}/:collection/_count",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the collection"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Optional NoSQL JSON query object to filter the count"
+              }
+            ]
+          },
+          "docs": "Return the count of documents in a collection, optionally filtered by a query."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Key-Value Store",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Codehooks Get a value by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key to retrieve the value for"
+              }
+            ]
+          },
+          "docs": "Retrieve a string or object value from the key-value store by its key."
+        },
+        {
+          "info": {
+            "name": "Codehooks Set a key-value pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key to store the value under"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Time-to-live in milliseconds for automatic expiration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Store a string or object value in the key-value store with an optional TTL (time-to-live) for automatic expiration."
+        },
+        {
+          "info": {
+            "name": "Codehooks Delete a key-value pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key to delete"
+              }
+            ]
+          },
+          "docs": "Remove a key-value pair from the key-value store."
+        },
+        {
+          "info": {
+            "name": "Codehooks Increment a numeric value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key/_incr",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the numeric value to increment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Increment a numeric value in the key-value store by the specified amount."
+        },
+        {
+          "info": {
+            "name": "Codehooks Decrement a numeric value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key/_decr",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the numeric value to decrement"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decrement a numeric value in the key-value store by the specified amount."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Queue",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Codehooks Enqueue a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{projectId}.api.codehooks.io/{space}/queue/:topic",
+            "params": [
+              {
+                "name": "topic",
+                "value": "",
+                "type": "path",
+                "description": "The queue topic name to add the job to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a job to a named queue topic. Jobs are processed asynchronously by worker functions registered for the topic."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
