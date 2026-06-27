@@ -130,7 +130,7 @@ common:
     type: JSONSchema
   - url: rules/codehooks-rules.yml
     type: Spectral
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://codehooks.io/llms.txt
 maintainers:
   - FN: Kin Lane
