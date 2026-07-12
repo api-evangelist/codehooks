@@ -100,6 +100,10 @@ apis:
       - AI inference pipelines triggered after document creation
       - Scheduled batch jobs (CRON)
 common:
+  - type: DomainSecurity
+    url: security/codehooks-domain-security.yml
+  - type: Authentication
+    url: authentication/codehooks-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/codehooks-io
   - type: Website

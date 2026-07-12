@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: codehooks.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 11 20:43:32 2026 GMT
+  hsts: false
+domains:
+- domain: codehooks.io
+  dnssec: false
+  caa:
+  - 0 issue "letsencrypt.org"
+  - 0 issue "digicert.com"
+  spf: false
+  dmarc: true
+  dmarc_policy: none

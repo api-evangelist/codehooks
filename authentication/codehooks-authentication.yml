@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/codehooks-database-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: x-apikey
+  description: API key for authentication. Obtain from the Codehooks.io dashboard or CLI.
+  sources:
+  - openapi/codehooks-database-rest-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT token for authentication
+  sources:
+  - openapi/codehooks-database-rest-api-openapi.yml
