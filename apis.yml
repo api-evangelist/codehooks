@@ -100,6 +100,8 @@ apis:
       - AI inference pipelines triggered after document creation
       - Scheduled batch jobs (CRON)
 common:
+  - type: AgenticAccess
+    url: agentic-access/codehooks-agentic-access.yml
   - type: DomainSecurity
     url: security/codehooks-domain-security.yml
   - type: Authentication
