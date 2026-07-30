@@ -14,7 +14,20 @@ tags:
   - Workers
   - Workflows
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/codehooks.png
 access: 3rd-Party
 kind: company
 created: '2025-02-08'
@@ -28,77 +41,80 @@ description: >-
   platform targets agent-native and AI backend use cases where simple, fast, MongoDB-style data access and event-driven
   automation matter.
 apis:
-  - aid: codehooks:codehooks-database-rest-api
-    name: Codehooks Database REST API
-    tags:
-      - CRUD
-      - Database
-      - Documents
-      - Key-Value
-      - NoSQL
-      - Queues
-      - REST
-    humanURL: https://codehooks.io/docs/
-    baseURL: https://{projectId}.api.codehooks.io/{space}
-    properties:
-      - url: https://codehooks.io/docs/
-        type: Documentation
-      - url: https://codehooks.io/docs/restapi
-        type: APIReference
-      - url: openapi/codehooks-database-rest-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Auto-generated, secure REST API for Codehooks NoSQL collections, the built-in key-value store, and queue topics.
-      Supports MongoDB-style query operators ($gt, $lt, $in, $nin, $exists, $regex, $or, $and), pagination, sorting,
-      field selection, bulk update/delete by query, counts, and increment/decrement on key-value entries. Authenticated
-      via API key.
-    x-features:
-      - Automatic CRUD REST API via app.crudlify()
-      - MongoDB-like query language with $gt/$lt/$in/$exists/$regex/$or/$and
-      - Pagination, sort, field selection
-      - Bulk updateByQuery and deleteByQuery
-      - Key-value cache with TTL plus increment/decrement
-      - Persistent queue API for asynchronous job processing
-      - Auto-generated OpenAPI/Swagger from schema
-      - Sub-5-second deploys via the codehooks CLI
-    x-use-cases:
-      - Internal CRUD apps and admin dashboards
-      - Webhook receivers (Stripe, GitHub, Shopify) with persistent queues
-      - Headless content backends for SPA/PWA hosting
-      - AI agent state and memory backends
-      - Lightweight microservices replacing custom Node.js + MongoDB stacks
-  - aid: codehooks:codehooks-events
-    name: Codehooks Events (AsyncAPI)
-    tags:
-      - Async
-      - Events
-      - Hooks
-      - Lifecycle
-      - Queues
-      - Workers
-    humanURL: https://codehooks.io/docs/hooks-and-workers
-    properties:
-      - url: https://codehooks.io/docs/hooks-and-workers
-        type: Documentation
-      - url: asyncapi/codehooks-events-asyncapi.yml
-        type: AsyncAPI
-    description: >-
-      Asynchronous CRUD lifecycle hooks (onBeforeCreate, onAfterCreate, onBeforeRead, onAfterRead, onBeforeUpdate,
-      onAfterUpdate, onBeforeDelete, onAfterDelete) and queue worker processing (onQueueJob) for serverless backend
-      operations. AsyncAPI describes these as event-driven channels backed by an internal pub/sub and persistent queue
-      runtime.
-    x-features:
-      - Eight CRUD lifecycle hooks (before/after for each verb)
-      - Queue worker (onQueueJob) for deferred work
-      - Automatic retry and persistent state on workers
-      - CRON-triggered jobs with multi-schedule support
-      - Stateful workflow orchestration
-    x-use-cases:
-      - Validation and transformation on writes
-      - Audit logging and outbound webhooks
-      - PDF/email generation deferred to a worker
-      - AI inference pipelines triggered after document creation
-      - Scheduled batch jobs (CRON)
+- aid: codehooks:codehooks-events
+  name: Codehooks Events (AsyncAPI)
+  tags:
+  - Async
+  - Events
+  - Hooks
+  - Lifecycle
+  - Queues
+  - Workers
+  humanURL: https://codehooks.io/docs/hooks-and-workers
+  properties:
+  - url: https://codehooks.io/docs/hooks-and-workers
+    type: Documentation
+  - url: asyncapi/codehooks-events-asyncapi.yml
+    type: AsyncAPI
+  description: >-
+    Asynchronous CRUD lifecycle hooks (onBeforeCreate, onAfterCreate, onBeforeRead, onAfterRead, onBeforeUpdate,
+    onAfterUpdate, onBeforeDelete, onAfterDelete) and queue worker processing (onQueueJob) for serverless
+    backend operations. AsyncAPI describes these as event-driven channels backed by an internal pub/sub
+    and persistent queue runtime.
+  x-features:
+  - Eight CRUD lifecycle hooks (before/after for each verb)
+  - Queue worker (onQueueJob) for deferred work
+  - Automatic retry and persistent state on workers
+  - CRON-triggered jobs with multi-schedule support
+  - Stateful workflow orchestration
+  x-use-cases:
+  - Validation and transformation on writes
+  - Audit logging and outbound webhooks
+  - PDF/email generation deferred to a worker
+  - AI inference pipelines triggered after document creation
+  - Scheduled batch jobs (CRON)
+- aid: codehooks:codehooks-documents-api
+  name: Codehooks Documents API
+  description: CRUD operations on NoSQL collection documents
+  humanURL: https://codehooks.io/docs/
+  baseURL: https://{projectId}.api.codehooks.io/{space}
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/codehooks-documents-api-openapi.yml
+  - type: Documentation
+    url: https://codehooks.io/docs/
+  - type: APIReference
+    url: https://codehooks.io/docs/restapi
+- aid: codehooks:codehooks-key-value-store-api
+  name: Codehooks Key-Value Store API
+  description: Fast key-value storage with optional TTL for caching and lookups
+  humanURL: https://codehooks.io/docs/
+  baseURL: https://{projectId}.api.codehooks.io/{space}
+  tags:
+  - Key-Value Store
+  properties:
+  - type: OpenAPI
+    url: openapi/codehooks-key-value-store-api-openapi.yml
+  - type: Documentation
+    url: https://codehooks.io/docs/
+  - type: APIReference
+    url: https://codehooks.io/docs/restapi
+- aid: codehooks:codehooks-queue-api
+  name: Codehooks Queue API
+  description: Asynchronous job queue for worker processing
+  humanURL: https://codehooks.io/docs/
+  baseURL: https://{projectId}.api.codehooks.io/{space}
+  tags:
+  - Queue
+  properties:
+  - type: OpenAPI
+    url: openapi/codehooks-queue-api-openapi.yml
+  - type: Documentation
+    url: https://codehooks.io/docs/
+  - type: APIReference
+    url: https://codehooks.io/docs/restapi
 common:
   - type: AgenticAccess
     url: agentic-access/codehooks-agentic-access.yml
