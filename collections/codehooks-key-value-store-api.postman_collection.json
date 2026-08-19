@@ -1,0 +1,1179 @@
+{
+  "item": [
+    {
+      "id": "fcd63e56-82e6-4996-9fa3-ea258a26b1c9",
+      "name": "Key-Value Store",
+      "description": {
+        "content": "Fast key-value storage with optional TTL for caching and lookups",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0887dce-b7d3-4a85-8f2c-ffb2d57baab5",
+          "name": "Codehooks Get a value by key",
+          "request": {
+            "name": "Codehooks Get a value by key",
+            "description": {
+              "content": "Retrieve a string or object value from the key-value store by its key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keyv",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key to retrieve the value for"
+                },
+                {
+                  "description": "The project ID assigned to your Codehooks project",
+                  "type": "any",
+                  "value": "{{projectId}}",
+                  "key": "projectId"
+                },
+                {
+                  "description": "The datastore space name (e.g. dev, staging, prod)",
+                  "type": "any",
+                  "value": "{{space}}",
+                  "key": "space"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "598ea625-7727-453a-9955-7da5c9bdb3ff",
+              "name": "The value associated with the key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to retrieve the value for"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed3f4332-7843-4dde-9ebe-b15a54b05c9a",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to retrieve the value for"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d6bed1a-0563-4fd2-85c6-b30611381526",
+              "name": "Key not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to retrieve the value for"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c558e89-79fe-4d47-9845-863cff4c5a98",
+          "name": "Codehooks Set a key-value pair",
+          "request": {
+            "name": "Codehooks Set a key-value pair",
+            "description": {
+              "content": "Store a string or object value in the key-value store with an optional TTL (time-to-live) for automatic expiration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keyv",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ttl",
+                  "value": "<integer>",
+                  "description": "Time-to-live in milliseconds for automatic expiration"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key to store the value under"
+                },
+                {
+                  "description": "The project ID assigned to your Codehooks project",
+                  "type": "any",
+                  "value": "{{projectId}}",
+                  "key": "projectId"
+                },
+                {
+                  "description": "The datastore space name (e.g. dev, staging, prod)",
+                  "type": "any",
+                  "value": "{{space}}",
+                  "key": "space"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2181ffe-8e69-4dd9-92c0-fbcee85e588b",
+              "name": "Key-value pair stored successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ttl",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to store the value under"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d769702-b04d-41ab-8a9e-8bfe7e01fa20",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ttl",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to store the value under"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ca864dd-c5b2-458c-a361-5fc9212883b3",
+          "name": "Codehooks Delete a key-value pair",
+          "request": {
+            "name": "Codehooks Delete a key-value pair",
+            "description": {
+              "content": "Remove a key-value pair from the key-value store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keyv",
+                ":key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key to delete"
+                },
+                {
+                  "description": "The project ID assigned to your Codehooks project",
+                  "type": "any",
+                  "value": "{{projectId}}",
+                  "key": "projectId"
+                },
+                {
+                  "description": "The datastore space name (e.g. dev, staging, prod)",
+                  "type": "any",
+                  "value": "{{space}}",
+                  "key": "space"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9896bb96-1ede-4147-a0d9-3c32b5f3cb70",
+              "name": "Key-value pair deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to delete"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a7cc472-93cb-4211-99d2-1b73512a240b",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to delete"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7ee292b-0eb5-4ea9-b925-90307fd2e8d2",
+              "name": "Key not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key to delete"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26e5f067-2334-4d04-acb6-30d25d4b914e",
+          "name": "Codehooks Increment a numeric value",
+          "request": {
+            "name": "Codehooks Increment a numeric value",
+            "description": {
+              "content": "Increment a numeric value in the key-value store by the specified amount.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keyv",
+                ":key",
+                "_incr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key of the numeric value to increment"
+                },
+                {
+                  "description": "The project ID assigned to your Codehooks project",
+                  "type": "any",
+                  "value": "{{projectId}}",
+                  "key": "projectId"
+                },
+                {
+                  "description": "The datastore space name (e.g. dev, staging, prod)",
+                  "type": "any",
+                  "value": "{{space}}",
+                  "key": "space"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e6ff015-bc9d-46a3-9180-e87b1ce7118a",
+              "name": "Value incremented successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key",
+                    "_incr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key of the numeric value to increment"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": 921.7728199100761\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc41e9d4-812f-4277-8d8a-265cfb937da8",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key",
+                    "_incr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key of the numeric value to increment"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59c6e2aa-7d56-4877-a2bd-f9214bddab0c",
+          "name": "Codehooks Decrement a numeric value",
+          "request": {
+            "name": "Codehooks Decrement a numeric value",
+            "description": {
+              "content": "Decrement a numeric value in the key-value store by the specified amount.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "keyv",
+                ":key",
+                "_decr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) The key of the numeric value to decrement"
+                },
+                {
+                  "description": "The project ID assigned to your Codehooks project",
+                  "type": "any",
+                  "value": "{{projectId}}",
+                  "key": "projectId"
+                },
+                {
+                  "description": "The datastore space name (e.g. dev, staging, prod)",
+                  "type": "any",
+                  "value": "{{space}}",
+                  "key": "space"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28888b1c-2e85-4723-96bd-659fa58bec48",
+              "name": "Value decremented successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key",
+                    "_decr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key of the numeric value to decrement"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": 921.7728199100761\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b04fb467-269f-46ca-b60f-cdb61dd029c2",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "keyv",
+                    ":key",
+                    "_decr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) The key of the numeric value to decrement"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The project ID assigned to your Codehooks project",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myproject-ff00",
+      "key": "projectId"
+    },
+    {
+      "description": {
+        "content": "The datastore space name (e.g. dev, staging, prod)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "dev",
+      "key": "space"
+    },
+    {
+      "type": "string",
+      "value": "https://{{projectId}}.api.codehooks.io/{{space}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "992ca8a8-8cd7-48bc-912b-2bc83cc885bc",
+    "name": "Codehooks Database REST Documents Key-Value Store API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Codehooks.io Database REST API provides a complete and secure REST API for basic database CRUD (Create, Read, Update, Delete) operations on NoSQL collections. The API supports querying with MongoDB-like syntax, pagination, sorting, and field selection. It also includes a key-value store for caching and fast lookups, and a queue system for asynchronous job processing. All endpoints are prefixed with the project ID and datastore space name.\n\nContact Support:\n Name: Codehooks",
+      "type": "text/plain"
+    }
+  }
+}

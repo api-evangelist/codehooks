@@ -1,0 +1,276 @@
+{
+  "item": [
+    {
+      "id": "60d0e1af-d569-4dc2-878f-772c7cda6b16",
+      "name": "Queue",
+      "description": {
+        "content": "Asynchronous job queue for worker processing",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c4dd94d-1c8a-4ebb-a598-063f23ec4ec1",
+          "name": "Codehooks Enqueue a job",
+          "request": {
+            "name": "Codehooks Enqueue a job",
+            "description": {
+              "content": "Add a job to a named queue topic. Jobs are processed asynchronously by worker functions registered for the topic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queue",
+                ":topic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "topic",
+                  "description": "(Required) The queue topic name to add the job to"
+                },
+                {
+                  "description": "The project ID assigned to your Codehooks project",
+                  "type": "any",
+                  "value": "{{projectId}}",
+                  "key": "projectId"
+                },
+                {
+                  "description": "The datastore space name (e.g. dev, staging, prod)",
+                  "type": "any",
+                  "value": "{{space}}",
+                  "key": "space"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b905fa8-b1e6-4e70-bb0f-dea906500c1a",
+              "name": "Job enqueued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queue",
+                    ":topic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "topic",
+                      "description": "(Required) The queue topic name to add the job to"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"topic\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "854cc923-6b0d-484a-a838-9346818bb4af",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queue",
+                    ":topic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "topic",
+                      "description": "(Required) The queue topic name to add the job to"
+                    },
+                    {
+                      "description": "The project ID assigned to your Codehooks project",
+                      "type": "any",
+                      "value": "{{projectId}}",
+                      "key": "projectId"
+                    },
+                    {
+                      "description": "The datastore space name (e.g. dev, staging, prod)",
+                      "type": "any",
+                      "value": "{{space}}",
+                      "key": "space"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The project ID assigned to your Codehooks project",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myproject-ff00",
+      "key": "projectId"
+    },
+    {
+      "description": {
+        "content": "The datastore space name (e.g. dev, staging, prod)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "dev",
+      "key": "space"
+    },
+    {
+      "type": "string",
+      "value": "https://{{projectId}}.api.codehooks.io/{{space}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6388c66c-ed47-41b8-870c-f3cedaefd72e",
+    "name": "Codehooks Database REST Documents Queue API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Codehooks.io Database REST API provides a complete and secure REST API for basic database CRUD (Create, Read, Update, Delete) operations on NoSQL collections. The API supports querying with MongoDB-like syntax, pagination, sorting, and field selection. It also includes a key-value store for caching and fast lookups, and a queue system for asynchronous job processing. All endpoints are prefixed with the project ID and datastore space name.\n\nContact Support:\n Name: Codehooks",
+      "type": "text/plain"
+    }
+  }
+}

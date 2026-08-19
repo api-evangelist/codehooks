@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Codehooks Database REST Documents Key-Value Store API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-apikey",
+      "value": "{{x-apikey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Key-Value Store",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Codehooks Get a value by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key to retrieve the value for"
+              }
+            ]
+          },
+          "docs": "Retrieve a string or object value from the key-value store by its key."
+        },
+        {
+          "info": {
+            "name": "Codehooks Set a key-value pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key to store the value under"
+              },
+              {
+                "name": "ttl",
+                "value": "",
+                "type": "query",
+                "description": "Time-to-live in milliseconds for automatic expiration"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Store a string or object value in the key-value store with an optional TTL (time-to-live) for automatic expiration."
+        },
+        {
+          "info": {
+            "name": "Codehooks Delete a key-value pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key to delete"
+              }
+            ]
+          },
+          "docs": "Remove a key-value pair from the key-value store."
+        },
+        {
+          "info": {
+            "name": "Codehooks Increment a numeric value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key/_incr",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the numeric value to increment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Increment a numeric value in the key-value store by the specified amount."
+        },
+        {
+          "info": {
+            "name": "Codehooks Decrement a numeric value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{projectId}.api.codehooks.io/{space}/keyv/:key/_decr",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the numeric value to decrement"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decrement a numeric value in the key-value store by the specified amount."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
