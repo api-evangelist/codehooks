@@ -4,6 +4,18 @@ name: Codehooks
 tags:
   - Backend
   - Database
+  - Event
+  - Hooks
+  - JavaScript
+  - NoSQL
+  - Queues
+  - Serverless
+  - Webhook
+  - Workers
+  - Workflows
+tags_raw:
+  - Backend
+  - Database
   - Events
   - Hooks
   - JavaScript
@@ -44,6 +56,13 @@ apis:
 - aid: codehooks:codehooks-events
   name: Codehooks Events (AsyncAPI)
   tags:
+  - Async
+  - Event
+  - Hooks
+  - Lifecycle
+  - Queues
+  - Workers
+  tags_raw:
   - Async
   - Events
   - Hooks
