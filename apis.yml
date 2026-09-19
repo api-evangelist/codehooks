@@ -139,6 +139,8 @@ apis:
   humanURL: https://codehooks.io/docs/
   baseURL: https://{projectId}.api.codehooks.io/{space}
   tags:
+  - Queues
+  tags_raw:
   - Queue
   properties:
   - type: OpenAPI
