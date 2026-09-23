@@ -1,0 +1,32 @@
+# Front Door AI Index — codehooks — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: codehooks
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: codehooks.io
+  final_host: codehooks.io
+  ownership: own
+  owner: codehooks
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 12
+  host_score: 12
+  density: 8.36
+  words: 1436
+  tiers:
+    agentic: 5
+    core: 5
+    model: 2
+  ambiguous: 10
+  top_terms:
+    agent: 10
+    AI: 4
+    AI agent: 2
+    Claude: 2
+    MCP: 1
+    ML: 1
+    llms.txt: 1
+    prompts: 1
