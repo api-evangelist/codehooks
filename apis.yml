@@ -1,6 +1,9 @@
 aid: codehooks
 url: https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/apis.yml
 name: Codehooks
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
 tags:
   - Backend
   - Database
