@@ -351,14 +351,6 @@ paths:
           description: Unauthorized - invalid or missing API key
 components:
   schemas:
-    DocumentInput:
-      type: object
-      additionalProperties: true
-      description: Input data for creating or replacing a document. Any valid JSON object is accepted.
-    DocumentUpdate:
-      type: object
-      additionalProperties: true
-      description: Partial update data for a document. Supports direct field updates or MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull.
     Document:
       type: object
       properties:
@@ -367,6 +359,14 @@ components:
           description: Unique document identifier
       additionalProperties: true
       description: A document in a Codehooks collection. Documents are schema-flexible JSON objects with a system-assigned _id.
+    DocumentUpdate:
+      type: object
+      additionalProperties: true
+      description: Partial update data for a document. Supports direct field updates or MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull.
+    DocumentInput:
+      type: object
+      additionalProperties: true
+      description: Input data for creating or replacing a document. Any valid JSON object is accepted.
   securitySchemes:
     apiKey:
       type: apiKey
