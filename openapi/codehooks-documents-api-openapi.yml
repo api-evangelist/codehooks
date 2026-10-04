@@ -351,14 +351,6 @@ paths:
           description: Unauthorized - invalid or missing API key
 components:
   schemas:
-    Document:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: Unique document identifier
-      additionalProperties: true
-      description: A document in a Codehooks collection. Documents are schema-flexible JSON objects with a system-assigned _id.
     DocumentUpdate:
       type: object
       additionalProperties: true
@@ -367,6 +359,14 @@ components:
       type: object
       additionalProperties: true
       description: Input data for creating or replacing a document. Any valid JSON object is accepted.
+    Document:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique document identifier
+      additionalProperties: true
+      description: A document in a Codehooks collection. Documents are schema-flexible JSON objects with a system-assigned _id.
   securitySchemes:
     apiKey:
       type: apiKey
