@@ -153,6 +153,8 @@ apis:
   - type: APIReference
     url: https://codehooks.io/docs/restapi
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/codehooks/overview
   - type: Plans
     url: plans/codehooks-plans-pricing.yml
   - type: RateLimits
