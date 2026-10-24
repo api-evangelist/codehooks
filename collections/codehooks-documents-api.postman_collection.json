@@ -1,400 +1,1823 @@
 {
+  "info": {
+    "_postman_id": "a0ad5d30-a234-4057-814e-097112e99b59",
+    "name": "Codehooks Database REST Documents API",
+    "description": "The Codehooks.io Database REST API provides a complete and secure REST API for basic database CRUD (Create, Read, Update, Delete) operations on NoSQL collections. The API supports querying with MongoDB-like syntax, pagination, sorting, and field selection. It also includes a key-value store for caching and fast lookups, and a queue system for asynchronous job processing. All endpoints are prefixed with the project ID and datastore space name.\n\nContact Support:\n Name: Codehooks",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:50:42.000Z",
+    "updatedAt": "2026-10-21T19:50:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a0ad5d30-a234-4057-814e-097112e99b59"
+  },
   "item": [
     {
-      "id": "056f676e-905e-4ee6-b297-56ef83aec5a6",
-      "name": "Documents",
-      "description": {
-        "content": "CRUD operations on NoSQL collection documents",
-        "type": "text/plain"
-      },
+      "name": "{collection}",
       "item": [
         {
-          "id": "8e99e257-4c12-49f8-99c7-5ce2ac7dbc80",
-          "name": "Codehooks List documents in a collection",
-          "request": {
-            "name": "Codehooks List documents in a collection",
-            "description": {
-              "content": "Retrieve documents from a collection with optional query parameters for filtering, sorting, pagination, and field selection. Supports both simple key-value query parameters and advanced NoSQL JSON query syntax via the q parameter.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists, $regex, $or, and $and."
-                },
-                {
-                  "disabled": false,
-                  "key": "h",
-                  "value": "<string>",
-                  "description": "Query hints as a JSON object (URL-encoded). Supports fields, sort, skip, limit, and projection."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of documents to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of documents to skip in the result set"
-                },
-                {
-                  "disabled": false,
-                  "key": "sort",
-                  "value": "<string>",
-                  "description": "Comma-separated list of fields to sort by. Prefix with - for descending order."
-                },
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of fields to include in the response"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection to query"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{id}",
+          "item": [
             {
-              "id": "2cfa63ab-6f69-45bb-bf6a-aaf47804d768",
-              "name": "A list of documents matching the query",
-              "originalRequest": {
+              "name": "Codehooks Get a document by ID",
+              "id": "db1ce7a5-a590-4d23-aec7-6e076d12189d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    ":collection"
-                  ],
+                  "raw": "{{baseUrl}}/:collection/:id",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "h",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "sort",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    }
+                  "path": [
+                    ":collection",
+                    ":id"
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "e921ad65-9ad7-477c-9842-a42f9f92d510",
                       "key": "collection",
-                      "description": "(Required) The name of the collection to query"
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
                     },
                     {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
+                      "id": "e1926cc7-7102-4d26-8f9c-c8617bd485f5",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the document"
                     }
                   ]
                 },
+                "description": "Retrieve a single document from a collection by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "47cdf57c-a28f-4fe2-aa10-3223efe9d326",
+                  "name": "The requested document",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-47cdf57c-a28f-4fe2-aa10-3223efe9d326"
+                },
+                {
+                  "id": "93ba78e4-03f7-4912-949a-fdb4ed826331",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-93ba78e4-03f7-4912-949a-fdb4ed826331"
+                },
+                {
+                  "id": "614f5874-d5c9-449f-9d10-b0175469a786",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-614f5874-d5c9-449f-9d10-b0175469a786"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-db1ce7a5-a590-4d23-aec7-6e076d12189d"
+            },
+            {
+              "name": "Codehooks Replace a document",
+              "id": "60dbeddd-88b4-488c-be07-e4314e68c2a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f486c081-abd4-4be7-a963-766a53f068bb",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
+                    },
+                    {
+                      "id": "2be112d6-6be1-49f5-b4f9-f48ee8fec76a",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the document"
+                    }
+                  ]
+                },
+                "description": "Replace an entire document in the collection by its unique identifier. The entire document is replaced with the provided data."
+              },
+              "response": [
+                {
+                  "id": "8c9577d4-e20e-4b93-9dd0-b92826d00785",
+                  "name": "Document replaced successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-8c9577d4-e20e-4b93-9dd0-b92826d00785"
+                },
+                {
+                  "id": "a5f7095c-67ac-41e4-b07f-27df9419eca6",
+                  "name": "Invalid document data",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-a5f7095c-67ac-41e4-b07f-27df9419eca6"
+                },
+                {
+                  "id": "03fde6dd-c468-40eb-8486-5441e2ba31a7",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-03fde6dd-c468-40eb-8486-5441e2ba31a7"
+                },
+                {
+                  "id": "7ee79825-ae8b-4b42-83d8-811093c4224a",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-7ee79825-ae8b-4b42-83d8-811093c4224a"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-60dbeddd-88b4-488c-be07-e4314e68c2a4"
+            },
+            {
+              "name": "Codehooks Update a document",
+              "id": "750bd6f3-8599-4693-aa58-5f66684fde51",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2a6b39f2-0dc7-4db6-adf2-83931e2cc184",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
+                    },
+                    {
+                      "id": "5e8e24d6-7f51-42bc-ba11-8bd8a5a2f677",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the document"
+                    }
+                  ]
+                },
+                "description": "Partially update a document in the collection by its unique identifier. Only the provided fields are updated. Supports MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull."
+              },
+              "response": [
+                {
+                  "id": "cf9cf051-dc30-475b-9452-0cae65e793a7",
+                  "name": "Document updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-cf9cf051-dc30-475b-9452-0cae65e793a7"
+                },
+                {
+                  "id": "9dcc5854-1fe1-4ffd-8306-262abe74708c",
+                  "name": "Invalid update data",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-9dcc5854-1fe1-4ffd-8306-262abe74708c"
+                },
+                {
+                  "id": "17f3755b-27c7-43ce-90ad-8bcc7a62924b",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-17f3755b-27c7-43ce-90ad-8bcc7a62924b"
+                },
+                {
+                  "id": "22d220df-b63a-4bec-9cbb-c8630c973026",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-22d220df-b63a-4bec-9cbb-c8630c973026"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-750bd6f3-8599-4693-aa58-5f66684fde51"
+            },
+            {
+              "name": "Codehooks Delete a document",
+              "id": "b449fdb8-108b-486f-b4e1-18ddc01c07c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5319777b-ca86-4412-b37f-e626fdacf815",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
+                    },
+                    {
+                      "id": "e776a9ee-d160-4da6-b536-02d9eadd75a7",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the document"
+                    }
+                  ]
+                },
+                "description": "Delete a single document from a collection by its unique identifier."
+              },
+              "response": [
+                {
+                  "id": "14f4e129-5ded-426c-8e07-65e1cb239967",
+                  "name": "Document deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-14f4e129-5ded-426c-8e07-65e1cb239967"
+                },
+                {
+                  "id": "cca45c09-10a8-41c9-b4e9-df6e17a4fb23",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-cca45c09-10a8-41c9-b4e9-df6e17a4fb23"
+                },
+                {
+                  "id": "1c162aac-e3d6-4543-a7b6-1e672576700a",
+                  "name": "Document not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-1c162aac-e3d6-4543-a7b6-1e672576700a"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-b449fdb8-108b-486f-b4e1-18ddc01c07c7"
+            }
+          ],
+          "id": "a0a51f39-35e8-4842-9075-85d2a562cdc6",
+          "createdAt": "2026-10-21T19:50:42.000Z",
+          "updatedAt": "2026-10-21T19:50:42.000Z",
+          "uid": "35240-a0a51f39-35e8-4842-9075-85d2a562cdc6"
+        },
+        {
+          "name": "_byquery",
+          "item": [
+            {
+              "name": "Codehooks Update multiple documents by query",
+              "id": "b6e0d8ea-f695-4735-aa4f-bf52d6b9861a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    "_byquery"
+                  ],
+                  "query": [
+                    {
+                      "description": "NoSQL JSON query object (URL-encoded) to select documents to update.",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "c88a2031-1699-4b5e-9a0a-7d60ccd46104",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
+                    }
+                  ]
+                },
+                "description": "Update multiple documents in a collection that match the provided query parameters. Supports MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull."
+              },
+              "response": [
+                {
+                  "id": "4ca6c1de-2076-4d68-a838-662bacf78fc4",
+                  "name": "Documents updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_byquery"
+                      ],
+                      "query": [
+                        {
+                          "description": "NoSQL JSON query object (URL-encoded) to select documents to update.",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-4ca6c1de-2076-4d68-a838-662bacf78fc4"
+                },
+                {
+                  "id": "79dc3298-458f-45d0-bcaf-4fefbfe27e11",
+                  "name": "Invalid update data or query",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_byquery"
+                      ],
+                      "query": [
+                        {
+                          "description": "NoSQL JSON query object (URL-encoded) to select documents to update.",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-79dc3298-458f-45d0-bcaf-4fefbfe27e11"
+                },
+                {
+                  "id": "7e57da8f-1b5b-42a8-a744-dc78a67eeda7",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ea453\": \"enim\",\n  \"ipsum_128\": -64306244\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_byquery"
+                      ],
+                      "query": [
+                        {
+                          "description": "NoSQL JSON query object (URL-encoded) to select documents to update.",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-7e57da8f-1b5b-42a8-a744-dc78a67eeda7"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-b6e0d8ea-f695-4735-aa4f-bf52d6b9861a"
+            },
+            {
+              "name": "Codehooks Delete multiple documents by query",
+              "id": "8f1beaf0-8efd-4f58-896f-60201b1cc2b7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    "_byquery"
+                  ],
+                  "query": [
+                    {
+                      "description": "NoSQL JSON query object (URL-encoded) to select documents to delete.",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "45cc3b36-3ce9-4971-a007-625fadd5d1a5",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
+                    }
+                  ]
+                },
+                "description": "Delete multiple documents in a collection that match the provided query parameters."
+              },
+              "response": [
+                {
+                  "id": "36d05fae-ae33-4e27-b22f-64eaa9cc49a9",
+                  "name": "Documents deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_byquery"
+                      ],
+                      "query": [
+                        {
+                          "description": "NoSQL JSON query object (URL-encoded) to select documents to delete.",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-36d05fae-ae33-4e27-b22f-64eaa9cc49a9"
+                },
+                {
+                  "id": "1359f27c-7340-4828-8b04-e57b48150340",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_byquery?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_byquery"
+                      ],
+                      "query": [
+                        {
+                          "description": "NoSQL JSON query object (URL-encoded) to select documents to delete.",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-1359f27c-7340-4828-8b04-e57b48150340"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-8f1beaf0-8efd-4f58-896f-60201b1cc2b7"
+            }
+          ],
+          "id": "4e695507-b067-43c2-b841-2e7b46a95238",
+          "createdAt": "2026-10-21T19:50:42.000Z",
+          "updatedAt": "2026-10-21T19:50:42.000Z",
+          "uid": "35240-4e695507-b067-43c2-b841-2e7b46a95238"
+        },
+        {
+          "name": "_count",
+          "item": [
+            {
+              "name": "Codehooks Count documents in a collection",
+              "id": "70e8d146-8b06-452a-bdc1-48f7bc3f2995",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/_count?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    "_count"
+                  ],
+                  "query": [
+                    {
+                      "description": "Optional NoSQL JSON query object to filter the count",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "f63df0f1-1e17-4064-a5e8-8e9042563105",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the collection"
+                    }
+                  ]
+                },
+                "description": "Return the count of documents in a collection, optionally filtered by a query."
+              },
+              "response": [
+                {
+                  "id": "04cd80ec-f8b7-4a0f-b790-1a4163b3c34e",
+                  "name": "The count of matching documents",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_count?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_count"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional NoSQL JSON query object to filter the count",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-04cd80ec-f8b7-4a0f-b790-1a4163b3c34e"
+                },
+                {
+                  "id": "e06ff9a7-13e9-4602-b793-5ec594044bd2",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-apikey",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/_count?q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        "_count"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional NoSQL JSON query object to filter the count",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T19:50:43.000Z",
+                  "updatedAt": "2026-10-21T19:50:43.000Z",
+                  "uid": "35240-e06ff9a7-13e9-4602-b793-5ec594044bd2"
+                }
+              ],
+              "createdAt": "2026-10-21T19:50:42.000Z",
+              "updatedAt": "2026-10-21T19:50:42.000Z",
+              "uid": "35240-70e8d146-8b06-452a-bdc1-48f7bc3f2995"
+            }
+          ],
+          "id": "25579539-a4e2-4be4-a4c1-1040809c11ee",
+          "createdAt": "2026-10-21T19:50:42.000Z",
+          "updatedAt": "2026-10-21T19:50:42.000Z",
+          "uid": "35240-25579539-a4e2-4be4-a4c1-1040809c11ee"
+        },
+        {
+          "name": "Codehooks List documents in a collection",
+          "id": "e7489410-8c2f-42df-a0d1-dbddcc48755c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:collection?q=<string>&h=<string>&limit=100&offset=0&sort=<string>&fields=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection"
+              ],
+              "query": [
+                {
+                  "description": "Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists, $regex, $or, and $and.",
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Query hints as a JSON object (URL-encoded). Supports fields, sort, skip, limit, and projection.",
+                  "key": "h",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of documents to return",
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "description": "Number of documents to skip in the result set",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Comma-separated list of fields to sort by. Prefix with - for descending order.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to include in the response",
+                  "key": "fields",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "9ae7275d-5ff8-4639-aa94-af9852c23669",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the collection to query"
+                }
+              ]
+            },
+            "description": "Retrieve documents from a collection with optional query parameters for filtering, sorting, pagination, and field selection. Supports both simple key-value query parameters and advanced NoSQL JSON query syntax via the q parameter."
+          },
+          "response": [
+            {
+              "id": "4392893d-d751-4430-a10c-61c300254ea8",
+              "name": "A list of documents matching the query",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection?q=<string>&h=<string>&limit=100&offset=0&sort=<string>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection"
+                  ],
+                  "query": [
+                    {
+                      "description": "Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists, $regex, $or, and $and.",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Query hints as a JSON object (URL-encoded). Supports fields, sort, skip, limit, and projection.",
+                      "key": "h",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of documents to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Number of documents to skip in the result set",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to sort by. Prefix with - for descending order.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"_id\": \"string\",\n    \"key_0\": 2697,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": false\n  },\n  {\n    \"_id\": \"string\",\n    \"key_0\": \"string\",\n    \"key_1\": 4512.165946644335\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"_id\": \"<string>\"\n  },\n  {\n    \"_id\": \"<string>\",\n    \"fugiat77\": true,\n    \"ullamco87\": 22579393\n  }\n]",
+              "createdAt": "2026-10-21T19:50:43.000Z",
+              "updatedAt": "2026-10-21T19:50:43.000Z",
+              "uid": "35240-4392893d-d751-4430-a10c-61c300254ea8"
             },
             {
-              "id": "a7e305bf-e397-4d0f-b1a1-da6625a39404",
+              "id": "7c05aade-ebce-4568-b333-4ac0e19f0795",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    ":collection"
-                  ],
+                  "raw": "{{baseUrl}}/:collection?q=<string>&h=<string>&limit=100&offset=0&sort=<string>&fields=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    ":collection"
+                  ],
                   "query": [
                     {
+                      "description": "Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists, $regex, $or, and $and.",
                       "key": "q",
                       "value": "<string>"
                     },
                     {
+                      "description": "Query hints as a JSON object (URL-encoded). Supports fields, sort, skip, limit, and projection.",
                       "key": "h",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of documents to return",
                       "key": "limit",
                       "value": "100"
                     },
                     {
+                      "description": "Number of documents to skip in the result set",
                       "key": "offset",
                       "value": "0"
                     },
                     {
+                      "description": "Comma-separated list of fields to sort by. Prefix with - for descending order.",
                       "key": "sort",
                       "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated list of fields to include in the response",
                       "key": "fields",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection to query"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
+                      "key": "collection"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T19:50:43.000Z",
+              "updatedAt": "2026-10-21T19:50:43.000Z",
+              "uid": "35240-7c05aade-ebce-4568-b333-4ac0e19f0795"
             },
             {
-              "id": "003b4e83-e3cf-46fc-8a92-564e4a784ab2",
+              "id": "6f309393-c5a8-4ac9-91f0-0fbf438f8952",
               "name": "Collection not found",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    ":collection"
-                  ],
+                  "raw": "{{baseUrl}}/:collection?q=<string>&h=<string>&limit=100&offset=0&sort=<string>&fields=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    ":collection"
+                  ],
                   "query": [
                     {
+                      "description": "Advanced NoSQL JSON query object (URL-encoded). Supports MongoDB-like operators such as $gt, $gte, $lt, $lte, $ne, $in, $nin, $exists, $regex, $or, and $and.",
                       "key": "q",
                       "value": "<string>"
                     },
                     {
+                      "description": "Query hints as a JSON object (URL-encoded). Supports fields, sort, skip, limit, and projection.",
                       "key": "h",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of documents to return",
                       "key": "limit",
                       "value": "100"
                     },
                     {
+                      "description": "Number of documents to skip in the result set",
                       "key": "offset",
                       "value": "0"
                     },
                     {
+                      "description": "Comma-separated list of fields to sort by. Prefix with - for descending order.",
                       "key": "sort",
                       "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated list of fields to include in the response",
                       "key": "fields",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection to query"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
+                      "key": "collection"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "Not Found",
               "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T19:50:43.000Z",
+              "updatedAt": "2026-10-21T19:50:43.000Z",
+              "uid": "35240-6f309393-c5a8-4ac9-91f0-0fbf438f8952"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:50:42.000Z",
+          "updatedAt": "2026-10-21T19:50:42.000Z",
+          "uid": "35240-e7489410-8c2f-42df-a0d1-dbddcc48755c"
         },
         {
-          "id": "7522179d-a07a-4f2a-9e2e-8e9710d38527",
           "name": "Codehooks Create a new document",
+          "id": "7c588130-4bc0-4bcc-b823-a26c58bbe1d3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Codehooks Create a new document",
-            "description": {
-              "content": "Create a new document in the specified collection. The document will be assigned a unique _id if one is not provided.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection to add the document to"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -405,2237 +1828,211 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"key_0\": 3720.2346449808874,\n  \"key_1\": \"string\"\n}",
+              "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:collection",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection"
+              ],
+              "variable": [
+                {
+                  "id": "a5123faa-96d2-4606-b862-09f32a897efd",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the collection to add the document to"
+                }
+              ]
+            },
+            "description": "Create a new document in the specified collection. The document will be assigned a unique _id if one is not provided."
           },
           "response": [
             {
-              "id": "3e3b66f0-79b5-42b3-a0b0-ad6b363a718e",
+              "id": "a25517bf-93f1-4c69-88e5-3017930fa7cd",
               "name": "Document created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection to add the document to"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-apikey",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
+                  "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection"
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"_id\": \"string\",\n  \"key_0\": true,\n  \"key_1\": 3007\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"_id\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:50:43.000Z",
+              "updatedAt": "2026-10-21T19:50:43.000Z",
+              "uid": "35240-a25517bf-93f1-4c69-88e5-3017930fa7cd"
             },
             {
-              "id": "9586f67f-78f6-4604-9efc-d91d456ba093",
+              "id": "2fff8b17-3bba-4576-b9f2-d4399933401b",
               "name": "Invalid document data",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":collection"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection to add the document to"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
+                      "key": "collection"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T19:50:43.000Z",
+              "updatedAt": "2026-10-21T19:50:43.000Z",
+              "uid": "35240-2fff8b17-3bba-4576-b9f2-d4399933401b"
             },
             {
-              "id": "db5eae72-8ad7-4a4c-b7a4-2719d62b0b54",
+              "id": "9158ced8-55e4-40ed-a7e2-2e258c48ce62",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-apikey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ut__4\": -34289290.282949604\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":collection"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection to add the document to"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
+                      "key": "collection"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T19:50:43.000Z",
+              "updatedAt": "2026-10-21T19:50:43.000Z",
+              "uid": "35240-9158ced8-55e4-40ed-a7e2-2e258c48ce62"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9d524d48-a35f-4dec-bb4a-adbdb9b04807",
-          "name": "Codehooks Get a document by ID",
-          "request": {
-            "name": "Codehooks Get a document by ID",
-            "description": {
-              "content": "Retrieve a single document from a collection by its unique identifier.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The unique identifier of the document"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "579fc299-4978-456c-b43e-93edc6465fdb",
-              "name": "The requested document",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"_id\": \"string\",\n  \"key_0\": true,\n  \"key_1\": 3007\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9b756935-944f-4f6d-bdd8-5620d722ca14",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1ea11702-75cc-46b5-86e8-a8610f532895",
-              "name": "Document not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fd92136d-d3a9-47d1-9284-09fc5924d045",
-          "name": "Codehooks Replace a document",
-          "request": {
-            "name": "Codehooks Replace a document",
-            "description": {
-              "content": "Replace an entire document in the collection by its unique identifier. The entire document is replaced with the provided data.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The unique identifier of the document"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 3720.2346449808874,\n  \"key_1\": \"string\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "e58bef73-6f49-4c6c-8657-b2659c077613",
-              "name": "Document replaced successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"_id\": \"string\",\n  \"key_0\": true,\n  \"key_1\": 3007\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "22742280-1cfa-40dc-b6ad-843cb0c9c52c",
-              "name": "Invalid document data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "cc1ab74d-7ff5-474f-8553-84df81255f40",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "bea4d89f-19bf-4612-988b-ca9903258112",
-              "name": "Document not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": 4802,\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "13b809f9-450a-4b48-bf0b-916e6504688f",
-          "name": "Codehooks Update a document",
-          "request": {
-            "name": "Codehooks Update a document",
-            "description": {
-              "content": "Partially update a document in the collection by its unique identifier. Only the provided fields are updated. Supports MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The unique identifier of the document"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 9335,\n  \"key_1\": 4633,\n  \"key_2\": 6885.168824587044\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "14960a63-640d-4231-b508-dba1f1ac8ac8",
-              "name": "Document updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"_id\": \"string\",\n  \"key_0\": true,\n  \"key_1\": 3007\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bf63bfc1-f813-4d29-98bf-c0460945fcdf",
-              "name": "Invalid update data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "34a557d4-1f3a-4c40-adb4-0b48148016be",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "a0894722-f789-437c-8cd8-e52686c35854",
-              "name": "Document not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f397375f-aefa-4645-9a2e-3ab0c5f84fbd",
-          "name": "Codehooks Delete a document",
-          "request": {
-            "name": "Codehooks Delete a document",
-            "description": {
-              "content": "Delete a single document from a collection by its unique identifier.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The unique identifier of the document"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "902a93f5-fc7e-4f0b-98ef-0855ee3340cd",
-              "name": "Document deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "e62618fd-b1c7-4346-a463-6db8bc3fbd44",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f20bfd1f-97bd-472d-ab36-d3be9b419652",
-              "name": "Document not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the document"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "675e7d72-656b-4bad-afdd-874477d05fcd",
-          "name": "Codehooks Update multiple documents by query",
-          "request": {
-            "name": "Codehooks Update multiple documents by query",
-            "description": {
-              "content": "Update multiple documents in a collection that match the provided query parameters. Supports MongoDB-like update operators such as $set, $inc, $unset, $push, and $pull.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                "_byquery"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "NoSQL JSON query object (URL-encoded) to select documents to update."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 9335,\n  \"key_1\": 4633,\n  \"key_2\": 6885.168824587044\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f30a23ff-c160-45a1-997f-5957a2806182",
-              "name": "Documents updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_byquery"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"count\": 6015\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f007d588-17b1-41db-88db-82e6e7ee9ed7",
-              "name": "Invalid update data or query",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_byquery"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "771f91dc-aeb8-4169-adc8-3c84c3e5491a",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_byquery"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3a517961-85e2-45be-96d7-08bb35ba0259",
-          "name": "Codehooks Delete multiple documents by query",
-          "request": {
-            "name": "Codehooks Delete multiple documents by query",
-            "description": {
-              "content": "Delete multiple documents in a collection that match the provided query parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                "_byquery"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "NoSQL JSON query object (URL-encoded) to select documents to delete."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "92156ca5-a90c-42b3-b607-d8c347321756",
-              "name": "Documents deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_byquery"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"count\": 7905\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "72f79023-d58f-41f6-80a4-34a2d0d7a586",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_byquery"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9644d96c-b322-42ed-b938-e7986b8a2751",
-          "name": "Codehooks Count documents in a collection",
-          "request": {
-            "name": "Codehooks Count documents in a collection",
-            "description": {
-              "content": "Return the count of documents in a collection, optionally filtered by a query.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":collection",
-                "_count"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "q",
-                  "value": "<string>",
-                  "description": "Optional NoSQL JSON query object to filter the count"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collection",
-                  "description": "(Required) The name of the collection"
-                },
-                {
-                  "description": "The project ID assigned to your Codehooks project",
-                  "type": "any",
-                  "value": "{{projectId}}",
-                  "key": "projectId"
-                },
-                {
-                  "description": "The datastore space name (e.g. dev, staging, prod)",
-                  "type": "any",
-                  "value": "{{space}}",
-                  "key": "space"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d11e01dc-76bd-4335-a29a-5fab86f55ee1",
-              "name": "The count of matching documents",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"count\": 2714\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e367c228-dfcb-4656-8381-552937c8b6cc",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":collection",
-                    "_count"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "q",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collection",
-                      "description": "(Required) The name of the collection"
-                    },
-                    {
-                      "description": "The project ID assigned to your Codehooks project",
-                      "type": "any",
-                      "value": "{{projectId}}",
-                      "key": "projectId"
-                    },
-                    {
-                      "description": "The datastore space name (e.g. dev, staging, prod)",
-                      "type": "any",
-                      "value": "{{space}}",
-                      "key": "space"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-apikey",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:50:42.000Z",
+          "updatedAt": "2026-10-21T19:50:42.000Z",
+          "uid": "35240-7c588130-4bc0-4bcc-b823-a26c58bbe1d3"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "The project ID assigned to your Codehooks project",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "myproject-ff00",
-      "key": "projectId"
-    },
-    {
-      "description": {
-        "content": "The datastore space name (e.g. dev, staging, prod)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "dev",
-      "key": "space"
-    },
-    {
-      "type": "string",
-      "value": "https://{{projectId}}.api.codehooks.io/{{space}}",
-      "key": "baseUrl"
+      "id": "dc3db640-a90c-4b76-8e2f-b37f9a62cfc5",
+      "createdAt": "2026-10-21T19:50:42.000Z",
+      "updatedAt": "2026-10-21T19:50:42.000Z",
+      "uid": "35240-dc3db640-a90c-4b76-8e2f-b37f9a62cfc5"
     }
   ],
   "auth": {
@@ -2643,25 +2040,33 @@
     "apikey": [
       {
         "key": "key",
-        "value": "x-apikey"
+        "value": "x-apikey",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f4798baa-3d2b-4ae5-bbaf-caa5816f2200",
-    "name": "Codehooks Database REST Documents API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Codehooks.io Database REST API provides a complete and secure REST API for basic database CRUD (Create, Read, Update, Delete) operations on NoSQL collections. The API supports querying with MongoDB-like syntax, pagination, sorting, and field selection. It also includes a key-value store for caching and fast lookups, and a queue system for asynchronous job processing. All endpoints are prefixed with the project ID and datastore space name.\n\nContact Support:\n Name: Codehooks",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "projectId",
+      "value": "myproject-ff00"
+    },
+    {
+      "key": "space",
+      "value": "dev"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{projectId}}.api.codehooks.io/{{space}}"
     }
-  }
+  ]
 }
