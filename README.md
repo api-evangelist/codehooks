@@ -1,4 +1,4 @@
-# Codehooks (codehooks)
+# Codehooks
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,102 +66,168 @@
 
 Codehooks is a JavaScript-native serverless backend platform that bundles a NoSQL document database, key-value store, persistent queues with workers, CRON jobs, blob storage, frontend hosting, and an automatic CRUD REST API in a single CLI-deployable runtime. Developers write small Node.js handler files and Codehooks generates a secure REST API, OpenAPI documentation, and event hooks (onBefore/onAfter Create/Read/Update/Delete) without managing servers. The platform targets agent-native and AI backend use cases where simple, fast, MongoDB-style data access and event-driven automation matter.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/codehooks/refs/heads/main/apis.yml)
+**Areas:** Backend · Database · Event · Hooks · JavaScript · NoSQL · Queues · Serverless · Webhook · Workers · Workflows
 
-## Scope
+## Codehooks on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Codehooks is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/codehooks/](https://apis.io/providers/codehooks/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Backend
-- Database
-- Events
-- Hooks
-- JavaScript
-- NoSQL
-- Queues
-- Serverless
-- Webhooks
-- Workers
-- Workflows
+- [Codehooks Events (AsyncAPI)](https://apis.io/apis/codehooks/codehooks-events/) — Asynchronous CRUD lifecycle hooks (onBeforeCreate, onAfterCreate, onBeforeRead, onAfterRead, onBeforeUpdate, onAfterUpdate, onBeforeDelete, onAfterDelete)…
+- [Codehooks Documents API](https://apis.io/apis/codehooks/codehooks-documents-api/) — CRUD operations on NoSQL collection documents
+- [Codehooks Key-Value Store API](https://apis.io/apis/codehooks/codehooks-key-value-store-api/) — Fast key-value storage with optional TTL for caching and lookups
+- [Codehooks Queue API](https://apis.io/apis/codehooks/codehooks-queue-api/) — Asynchronous job queue for worker processing
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Codehooks Database REST API
+Event-driven and webhook contracts.
 
-Auto-generated, secure REST API for Codehooks NoSQL collections, the built-in key-value store, and queue topics. Supports MongoDB-style query operators ($gt, $lt, $in, $nin, $exists, $regex, $or, $and), pagination, sorting, field selection, bulk update/delete by query, counts, and increment/decrement on key-value entries. Authenticated via API key.
+- [Codehooks Events API](https://apis.io/asyncapis/codehooks/codehooks-events-asyncapi/)
 
-- **Human URL:** [https://codehooks.io/docs/](https://codehooks.io/docs/)
-- **Base URL:** `https://{projectId}.api.codehooks.io/{space}`
+#### Event channels (9)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- CRUD
-- Database
-- Documents
-- Key-Value
-- NoSQL
-- Queues
-- REST
+- [collection/afterCreate](https://apis.io/channels/codehooks/collection-aftercreate/)
+- [collection/afterDelete](https://apis.io/channels/codehooks/collection-afterdelete/)
+- [collection/afterRead](https://apis.io/channels/codehooks/collection-afterread/)
+- [collection/afterUpdate](https://apis.io/channels/codehooks/collection-afterupdate/)
+- [collection/beforeCreate](https://apis.io/channels/codehooks/collection-beforecreate/)
+- [collection/beforeDelete](https://apis.io/channels/codehooks/collection-beforedelete/)
+- [collection/beforeRead](https://apis.io/channels/codehooks/collection-beforeread/)
+- [collection/beforeUpdate](https://apis.io/channels/codehooks/collection-beforeupdate/)
+- [queue/{topic}](https://apis.io/channels/codehooks/queue-topic/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://codehooks.io/docs/)
-- [API Reference](https://codehooks.io/docs/restapi)
-- [OpenAPI](openapi/codehooks-database-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/codehooks-database-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codehooks-database-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Codehooks Events (AsyncAPI)
+- [Codehooks Agentic Access](https://apis.io/agentic-access/codehooks/codehooks-agentic-access/)
 
-Asynchronous CRUD lifecycle hooks (onBeforeCreate, onAfterCreate, onBeforeRead, onAfterRead, onBeforeUpdate, onAfterUpdate, onBeforeDelete, onAfterDelete) and queue worker processing (onQueueJob) for serverless backend operations. AsyncAPI describes these as event-driven channels backed by an internal pub/sub and persistent queue runtime.
+#### JSON Schema (3)
 
-- **Human URL:** [https://codehooks.io/docs/hooks-and-workers](https://codehooks.io/docs/hooks-and-workers)
+The data models the API reads and writes.
 
-#### Tags
+- [Codehooks Document](https://apis.io/schemas/codehooks/codehooks-document/)
+- [Codehooks Key-Value Entry](https://apis.io/schemas/codehooks/codehooks-key-value/)
+- [Codehooks Queue Job](https://apis.io/schemas/codehooks/codehooks-queue-job/)
 
-- Async
-- Events
-- Hooks
-- Lifecycle
-- Queues
-- Workers
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://codehooks.io/docs/hooks-and-workers)
-- [AsyncAPI](asyncapi/codehooks-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/codehooks-database-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/codehooks-database-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Codehooks Context](https://apis.io/jsonld/codehooks/codehooks-context/)
 
-## Common Properties
+#### Collections (4)
 
-- [LinkedIn](https://www.linkedin.com/company/codehooks-io)
+Postman and Open Collection request collections.
+
+- [Codehooks Database REST API](https://apis.io/collections/codehooks/open-codehooks-database-rest-api/)
+- [Codehooks Database REST Documents API](https://apis.io/collections/codehooks/open-codehooks-documents-api/)
+- [Codehooks Database REST Documents Key-Value Store API](https://apis.io/collections/codehooks/open-codehooks-key-value-store-api/)
+- [Codehooks Database REST Documents Queue API](https://apis.io/collections/codehooks/open-codehooks-queue-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Codehooks — asyncapi rules](https://apis.io/rules/codehooks/codehooks-asyncapi-spectral-rules/)
+- [Codehooks — jsonschema rules](https://apis.io/rules/codehooks/codehooks-jsonschema-spectral-rules/)
+- [Codehooks API Rules](https://apis.io/rules/codehooks/codehooks-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Codehooks Authentication](https://apis.io/security/codehooks/codehooks-authentication/)
+- [Codehooks Domain Security](https://apis.io/security/codehooks/codehooks-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Codehooks Plans Pricing](https://apis.io/plans/codehooks/codehooks-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Codehooks Rate Limits](https://apis.io/rate-limits/codehooks/codehooks-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Codehooks Finops](https://apis.io/finops/codehooks/codehooks-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://codehooks.io/)
 - [Documentation](https://codehooks.io/docs/)
-- [Getting Started](https://codehooks.io/docs/quickstart-cli)
-- [Blog](https://codehooks.io/blog)
+- [Getting started](https://codehooks.io/docs/quickstart-cli)
 - [Pricing](https://codehooks.io/#pricing)
-- [Git Hub](https://github.com/RestDB)
-- [N P M Package](https://www.npmjs.com/package/codehooks-js)
-- [Terms of Service](https://codehooks.io/terms)
-- [Privacy Policy](https://codehooks.io/privacy)
-- [JSON-LD](json-ld/codehooks-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/codehooks-document-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/codehooks-key-value-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/codehooks-queue-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Spectral Rules](rules/codehooks-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [L L Ms Txt](https://codehooks.io/llms.txt)
+- [Blog](https://codehooks.io/blog)
+- [Terms of service](https://codehooks.io/terms)
+- [Privacy policy](https://codehooks.io/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 62.3 |
+| Contract governance | 13.6 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 36.9 |
+| Access clarity | 34.2 |
+
+**Agent readiness 23.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/codehooks/](https://apis.io/providers/codehooks/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Codehooks: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/codehooks/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
